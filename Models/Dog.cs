@@ -12,5 +12,7 @@ namespace Dog_Grooming_Salon.Models
 
         public int? OwnerID { get; set; }
         public Owner? Owner { get; set; }
+        public ICollection<DogGender>? DogGenders { get; set; }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/"
 @model Dog_Grooming_Salon.Pages.Dogs.IndexModel
 
 @{
@@ -22,13 +22,22 @@
             <th>
                 @Html.DisplayNameFor(model => model.Dog[0].Owner.FullName)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.Dog[0].DogGenders)
+            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Dog) {
-        <tr>
+        @foreach (var item in Model.DogD.Dogs)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.DogID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -38,6 +47,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Owner.FullName)
                 </td>
+                    <td>
+                    @{
+                        foreach (var gender in item.DogGenders)
+                        {
+                            @gender.Gender.ID @: @gender.Gender.GenderName <br />
+                        }
+                    }
+                        </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

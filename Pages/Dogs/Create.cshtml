@@ -29,6 +29,26 @@
                 </select>
                 <span asp-validation-for="Dog.OwnerID" class="text-danger"></span>
             </div>
+            <tr>
+ @{
+ int cnt = 0;
+ foreach (var cat in Model.AssignedGenderDataList)
+{
+ if (cnt++ % 3 == 0)
+{
+@:</tr><tr>
+}
+@:<td>
+ <input type="checkbox"
+ name="selectedGenders"
+ value="@cat.GenderID"
+ @(Html.Raw(cat.Assigned ? 
+"checked=\"checked\"" : "")) />
+ @cat.GenderID @: @cat.Name
+ @:</td>
+ }
+ @:</tr>
+}
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
